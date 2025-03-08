@@ -11,3 +11,4 @@ build.sbt
 project/
 target/
 out/
+.bsp
