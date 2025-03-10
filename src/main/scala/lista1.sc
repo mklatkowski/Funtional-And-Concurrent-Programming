@@ -24,6 +24,31 @@ ends(List("Ala", "ma", "kota")) == ("Ala", "kota")
 ends(List(1)) == (1,1)
 ends(Nil)
 
+//zadanie 3
+
+val posortowana: List[Int] => Boolean = xs =>
+  if xs == Nil || xs.tail == Nil then true
+  else xs.head <= xs.tail.head && posortowana(xs.tail)
+
+posortowana(List(1,3,3,5,6,7))
+
+posortowana(Nil)
+posortowana(List(-5))
+posortowana(List(1,1,1,1))
+!posortowana(List(1,2,2,2,1,5))
+!posortowana(List(1,2,3,2))
+!posortowana(List(6,5,4))
+
+//zadanie 4
+
+val glue: (List[String], String) => String = (xs, separator) =>
+  if xs == Nil then ""
+  else if xs.tail == Nil then xs.head
+  else s"${xs.head}${separator}${glue(xs.tail, separator)}"
 
 
+glue(List("To", "jest", "napis"), "-") == "To-jest-napis"
+glue(Nil, "-") == ""
 
+glue(List("Test"), ".") == "Test"
+glue(List("Test", "pierwszy"), "+") == "Test+pierwszy"
